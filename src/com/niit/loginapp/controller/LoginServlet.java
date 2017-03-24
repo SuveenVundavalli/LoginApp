@@ -1,6 +1,8 @@
 package com.niit.loginapp.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,9 +48,17 @@ public class LoginServlet extends HttpServlet {
 		else
 		{
 			//Navigate/dispatch to login page
-			//show error message
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.html");
-			dispatcher.forward(request, response);
+			
+			PrintWriter writer = response.getWriter();
+			response.setContentType("text/html;charset=UTF-8");
+			writer.append("Invalid Credentials. Please try again");
+			//we have include login.html + this message
+			//show error message
+
+			
+			dispatcher.include(request, response);
+			// dispatcher.forward doesn't give writer.append message. Hence we need to use dispatcher.include
 		}
 		
 	}
