@@ -12,7 +12,7 @@ public class DBConnection {
 	private static String driver = "org.h2.Driver";
 	
 	
-	
+	// Static method hence easy call from any class
 	public static Connection getDBConnection() {
 		
 		Connection con = null;
